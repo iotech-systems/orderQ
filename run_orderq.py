@@ -20,5 +20,5 @@ def info():
 # -- -- [ start app here ] -- --
 if __name__ == "__main__":
    setproctitle.setproctitle(APP_NAME)
-   app.run(host="0.0.0.0", debug=False)
+   app.run(host="0.0.0.0", port=FLASK_PORT, debug=False)
 # == == == == == == == == == == == == == == == == == == == == == == == == == ==

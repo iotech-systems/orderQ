@@ -36,8 +36,7 @@ def info():
 def get_called_orders(shopid):
    from core.shopOps import shopOps
    ops: shopOps = shopOps(INI, shopid)
-   called_orders: [] = ops.get_called_orders()
-   d: {} = {"err": 0, "called": called_orders}
+   d: {} = ops.get_called_orders()
    resp: _f.Response = _f.make_response(json.dumps(d))
    resp.status_code = 200
    resp.content_type = "application/json"

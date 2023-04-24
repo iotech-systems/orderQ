@@ -20,7 +20,7 @@ class shopOps(object):
    def get_called_orders(self) -> {}:
       # -- -- -- --
       self.__set_conn__()
-      dout = {"err": 1, "shopid": self.shopid, "orders": ""}
+      dout = {"err": 1, "shopid": self.shopid, "orders": []}
       rval = self.red.hget(f"ORDER_CALL_TABLES", self.shopid)
       # -- -- -- --
       if (rval is not None) and ("," in rval):

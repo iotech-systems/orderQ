@@ -28,8 +28,12 @@ class shopOps(object):
       return rval
 
    def __set_conn__(self):
+      # -- -- -- --
       host = self.ini.get("REDIS", "HOST")
       port: int = self.ini.getint("REDIS", "PORT")
       pwd: str = self.ini.get("REDIS", "PWD")
       db: int = self.ini.getint("REDIS", "CALLED_NUMBERS_DB_IDX")
-      self.red: redis.Redis = redis.Redis(host=host, port=port, db=db, password=pwd)
+      # -- -- -- --
+      self.red: redis.Redis = \
+         redis.Redis(host=host, port=port, db=db, password=pwd, decode_responses=True)
+      # -- -- -- --

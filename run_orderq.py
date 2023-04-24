@@ -32,8 +32,8 @@ def info():
    remote_ip = _f.request.remote_addr
    return _f.render_template("info.html", remote_ip=remote_ip)
 
-@app.route("/get/called_numbers/<shopid>", methods=["GET"])
-def read_shop_numbers(shopid):
+@app.route("/get/called_orders/<shopid>", methods=["GET"])
+def read_shop_orders(shopid):
    from core.shopOps import shopOps
    ops: shopOps = shopOps(INI, shopid)
    called_orders: [] = ops.get_called_orders()
@@ -43,8 +43,8 @@ def read_shop_numbers(shopid):
    resp.content_type = "application/json"
    return resp
 
-@app.route("/set/called_numbers/<shopid>", methods=["POST"])
-def set_called_numbers(shopid):
+@app.route("/set/called_orders/<shopid>", methods=["POST"])
+def set_called_orders(shopid):
    from core.shopOps import shopOps
    numbers = _f.request.args.get("n", type=str)
    ops: shopOps = shopOps(INI, shopid)

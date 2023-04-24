@@ -38,7 +38,11 @@ def read_shop_numbers(shopid):
    ops: shopOps = shopOps(INI, shopid)
    called_orders: [] = ops.get_called_orders()
    d: {} = {"err": 0, "called": called_orders}
-   return json.dumps(d), 200, {"content-type": "application/json"}
+   resp: _f.Response = _f.make_response(json.dumps(d))
+   resp.status_code = 200
+   resp.content_type = "application/json"
+   resp.headers.add("Access-Control-Allow-Origin", "*")
+   return resp
 
 @app.route("/set/called_numbers/<shopid>", methods=["POST"])
 def set_called_numbers(shopid):

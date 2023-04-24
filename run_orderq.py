@@ -37,8 +37,9 @@ def read_shop_numbers(shopid):
    from core.shopOps import shopOps
    ops: shopOps = shopOps(INI, shopid)
    called_orders: [] = ops.get_called_orders()
+
    d: {} = {"err": 0, "called": called_orders}
-   return json.dumps(d)
+   return json.dumps(d), 200, {"content-type": "application/json"}
 
 @app.route("/set/called_numbers/<shopid>", methods=["POST"])
 def set_called_numbers(shopid):
@@ -46,7 +47,7 @@ def set_called_numbers(shopid):
    numbers = _f.request.args.get("n")
    ops: shopOps = shopOps(INI, shopid)
    ops.update_called_orders(shopid, numbers)
-   return "OK"
+   return "OK", 200, {"content-type": "text/plain"}
 
 
 # == == == == == == == == == == == == == == == == == == == == == == ==

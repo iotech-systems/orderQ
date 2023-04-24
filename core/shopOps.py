@@ -17,13 +17,17 @@ class shopOps(object):
       except:
          pass
 
-   def get_called_orders(self) -> []:
+   def get_called_orders(self) -> {}:
+      # -- -- -- --
       self.__set_conn__()
-      arr = []
+      dout = {"err": 1, "shopid": self.shopid, "orders": ""}
       rval = self.red.hget(f"ORDER_CALL_TABLES", self.shopid)
+      # -- -- -- --
       if (rval is not None) and ("," in rval):
-         arr = rval.split(",")
-      return arr
+         dout["orders"] = rval.split(",")
+         dout["err"] = 0
+      # -- -- -- --
+      return dout
 
    def update_called_orders(self, shopid, numbers):
       self.__set_conn__()

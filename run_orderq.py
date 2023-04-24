@@ -4,11 +4,15 @@ import flask as _f, setproctitle
 import configparser as _cp
 
 
+ROOT_DIR = "/opt/iotech/orderQ"
+TMPLS_DIR = f"{ROOT_DIR}/tmpls"
+STATIC_DIR = f"{ROOT_DIR}/static"
+
 FLASK_PORT: int = 8022
 
 APP_NAME = "orderQ"
 app = _f.Flask(APP_NAME, static_url_path=""
-   , static_folder="static", template_folder="tmpls")
+   , static_folder=STATIC_DIR, template_folder=TMPLS_DIR)
 
 @app.route("/info", methods=["GET"])
 def info():

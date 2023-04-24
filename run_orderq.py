@@ -43,7 +43,7 @@ def read_shop_numbers(shopid):
 @app.route("/set/called_numbers/<shopid>", methods=["POST"])
 def set_called_numbers(shopid):
    from core.shopOps import shopOps
-   numbers = _f.request.args.get("n")
+   numbers = _f.request.args.get("n", type=str)
    ops: shopOps = shopOps(INI, shopid)
    ops.update_called_orders(shopid, numbers)
    return "OK", 200, {"content-type": "text/plain"}

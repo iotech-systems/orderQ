@@ -41,7 +41,6 @@ def read_shop_numbers(shopid):
    resp: _f.Response = _f.make_response(json.dumps(d))
    resp.status_code = 200
    resp.content_type = "application/json"
-   resp.headers.add("Access-Control-Allow-Origin", "*")
    return resp
 
 @app.route("/set/called_numbers/<shopid>", methods=["POST"])

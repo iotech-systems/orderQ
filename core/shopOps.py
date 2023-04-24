@@ -21,7 +21,7 @@ class shopOps(object):
       self.__set_conn__()
       arr = []
       rval = self.red.hget(f"ORDER_CALL_TABLES", self.shopid)
-      if "," in rval:
+      if (rval is not None) and ("," in rval):
          arr = rval.split(",")
       return arr
 

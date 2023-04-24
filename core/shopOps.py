@@ -19,8 +19,11 @@ class shopOps(object):
 
    def get_called_orders(self) -> []:
       self.__set_conn__()
+      arr = []
       rval = self.red.hget(f"ORDER_CALL_TABLES", self.shopid)
-      return rval
+      if "," in rval:
+         arr = rval.split(",")
+      return arr
 
    def update_called_orders(self, shopid, numbers):
       self.__set_conn__()
